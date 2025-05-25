@@ -14148,6 +14148,7 @@ const StyledOption = newStyled.div`
     background-color: rgba(205, 205, 205, 0.63);
   }
 `;
+const arrow = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGkSURBVHgB7djdacMwFIbh45LcZ48QSEfoBhkh3SCbdIQmE3SEdATfJNcdIfcGu/qoCiY4zrEt6cjwPWBsg3/Ei60LiRAREREREREREREREc1Bob1ws9nsmqbZLhaLY1mWPzIzY8evCrRerz/c7uBPb257u1wupcyEG/+n2+396W25XL5qI72IzqF1vHLb2b10KzNwFwdWVVXttPerAhVFcf+1zCJSR5x/N1FSBXL/7nvHQ7OO1BPn5KaHoyipJ2kf4ix/Ydqym5OexNnLAOpA/sXZRwoZBwYF8gPINlLoODA4kB9IdpFixIFRgUTyihQrDowOBDlEihkHJgUCy0ix48DkQGARKUUcCBIIUkZKFQeCBYIUkVLGgaCBIGak1HEgeCCIEckiDkQJBCEjWcWBaIEgRCTLOBA1EEyJZB0HogeCMZFyiANJAsGQSLnEgWSBQBMppziQNBD0RXJr399ueXfXcZtJHEgeCHoidTGLAyaBQBnJNA6YBYInkczjgGkgeBApizhgHgh8pC83Sa/quj5dr9eDEBERERERERERERERtf0Cr1QewsBPeIMAAAAASUVORK5CYII=";
 const Select = ({ selectedOptions, maxWidth = "200px", children, ...props }) => {
   const [isOpen, setIsOpen] = reactExports.useState(false);
   return /* @__PURE__ */ jsxs(StyledSelectContainer, { maxWidth, onClick: () => setIsOpen(!isOpen), ...props, children: [
@@ -14157,7 +14158,7 @@ const Select = ({ selectedOptions, maxWidth = "200px", children, ...props }) => 
         StyledSelectIcon,
         {
           isOpen,
-          src: "/arrow.png",
+          src: arrow,
           alt: "arrow",
           css: css`
             padding: 2px 0 0 0;
@@ -14222,6 +14223,8 @@ const IconButton = ({ variant = "primary", src, children, ...props }) => {
     children
   ] });
 };
+const minus = "data:image/svg+xml,%3csvg%20width='15'%20height='3'%20viewBox='0%200%2015%203'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.5%201.5C6.18629%201.5%208.81371%201.5%2013.5%201.5'%20stroke='%23363636'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
+const plus = "data:image/svg+xml,%3csvg%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.5%207.5H13.5M7.5%2013.5V1.5'%20stroke='%23363636'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
 const ItemCounter = ({
   initial = 1,
   isInCart,
@@ -14269,7 +14272,7 @@ const ItemCounter = ({
     /* @__PURE__ */ jsx$1(
       IconButton,
       {
-        src: "/minus.svg",
+        src: minus,
         "aria-label": "감소",
         onClick: handleDecrement,
         variant: "secondary",
@@ -14280,7 +14283,7 @@ const ItemCounter = ({
     /* @__PURE__ */ jsx$1(
       IconButton,
       {
-        src: "/plus.svg",
+        src: plus,
         "aria-label": "증가",
         onClick: handleIncrement,
         variant: "secondary",
@@ -14289,7 +14292,9 @@ const ItemCounter = ({
     )
   ] });
 };
-const FALLBACK_IMAGE_SRC = "/NoImage.svg";
+const NoImage = "data:image/svg+xml,%3csvg%20width='182'%20height='112'%20viewBox='0%200%20182%20112'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20width='182'%20height='112'%20fill='white'/%3e%3cpath%20d='M81%2048.47L82.3%2047.2L99.8%2064.72L98.53%2066L96.53%2064H83.8C83.2696%2064%2082.7609%2063.7893%2082.3858%2063.4142C82.0107%2063.0391%2081.8%2062.5304%2081.8%2062V50C81.8%2049.78%2081.84%2049.57%2081.9%2049.37L81%2048.47ZM86.8%2048L88.8%2046H94.8L96.8%2048H99.8C100.33%2048%20100.839%2048.2107%20101.214%2048.5858C101.589%2048.9609%20101.8%2049.4696%20101.8%2050V62C101.8%2062.6%20101.54%2063.13%20101.12%2063.5L96.13%2058.5C96.56%2057.77%2096.8%2056.91%2096.8%2056C96.8%2054.6739%2096.2732%2053.4021%2095.3355%2052.4645C94.3979%2051.5268%2093.1261%2051%2091.8%2051C90.89%2051%2090.03%2051.24%2089.3%2051.67L85.62%2048H86.8ZM86.8%2056C86.8%2057.3261%2087.3268%2058.5979%2088.2645%2059.5355C89.2021%2060.4732%2090.4739%2061%2091.8%2061C92.3%2061%2092.83%2060.92%2093.3%2060.77L91.52%2059C90.8242%2058.9254%2090.1748%2058.6149%2089.68%2058.12C89.1851%2057.6252%2088.8746%2056.9758%2088.8%2056.28L87.03%2054.5C86.88%2054.97%2086.8%2055.5%2086.8%2056ZM91.8%2053C92.5956%2053%2093.3587%2053.3161%2093.9213%2053.8787C94.4839%2054.4413%2094.8%2055.2044%2094.8%2056C94.8005%2056.3406%2094.743%2056.6787%2094.63%2057L90.8%2053.17C91.1213%2053.057%2091.4594%2052.9995%2091.8%2053Z'%20fill='%23363636'/%3e%3c/svg%3e";
+const AddCart = "data:image/svg+xml,%3csvg%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M7.33332%205.99999H8.66666V3.99999H10.6667V2.66666H8.66666V0.666656H7.33332V2.66666H5.33332V3.99999H7.33332V5.99999ZM4.66666%2012C3.93332%2012%203.33999%2012.6%203.33999%2013.3333C3.33999%2014.0667%203.93332%2014.6667%204.66666%2014.6667C5.39999%2014.6667%205.99999%2014.0667%205.99999%2013.3333C5.99999%2012.6%205.39999%2012%204.66666%2012ZM11.3333%2012C10.6%2012%2010.0067%2012.6%2010.0067%2013.3333C10.0067%2014.0667%2010.6%2014.6667%2011.3333%2014.6667C12.0667%2014.6667%2012.6667%2014.0667%2012.6667%2013.3333C12.6667%2012.6%2012.0667%2012%2011.3333%2012ZM4.77999%209.83332L4.79999%209.75332L5.39999%208.66666H10.3667C10.8667%208.66666%2011.3067%208.39332%2011.5333%207.97999L14.1067%203.30666L12.9467%202.66666H12.94L12.2067%203.99999L10.3667%207.33332H5.68666L5.59999%207.15332L4.10666%203.99999L3.47332%202.66666L2.84666%201.33332H0.666656V2.66666H1.99999L4.39999%207.72666L3.49999%209.35999C3.39332%209.54666%203.33332%209.76666%203.33332%209.99999C3.33332%2010.7333%203.93332%2011.3333%204.66666%2011.3333H12.6667V9.99999H4.94666C4.85999%209.99999%204.77999%209.92666%204.77999%209.83332Z'%20fill='white'/%3e%3c/svg%3e";
+const FALLBACK_IMAGE_SRC = NoImage;
 const ProductItem = ({
   name,
   price,
@@ -14374,7 +14379,7 @@ const ProductItem = ({
                 IconButton,
                 {
                   variant: "primary",
-                  src: "./AddCart.svg",
+                  src: AddCart,
                   onClick: onAddCart,
                   "aria-label": "장바구니 담기",
                   children: "담기"
@@ -14542,12 +14547,13 @@ function useAPI({ fetcher: fetcher2, name }) {
     error: errorMap[name] ?? null
   };
 }
+const ShoppingBagSvg = "data:image/svg+xml,%3csvg%20width='21'%20height='24'%20viewBox='0%200%2021%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M10.292%20-1.90735e-05C9.4822%20-1.90735e-05%208.7289%200.211519%208.0321%200.634596C7.33531%201.03844%206.77975%201.59613%206.36544%202.30767C5.96996%203.01921%205.77222%203.78844%205.77222%204.61537V5.53844H1.30894L1.25244%206.40383L0.291992%2024H20.292L19.3315%206.40383L19.275%205.53844H14.8118V4.61537C14.8118%203.78844%2014.6046%203.01921%2014.1903%202.30767C13.7948%201.59613%2013.2487%201.03844%2012.5519%200.634596C11.8551%200.211519%2011.1018%20-1.90735e-05%2010.292%20-1.90735e-05ZM10.292%201.84613C11.0453%201.84613%2011.6856%202.11537%2012.2129%202.65383C12.7402%203.19229%2013.0039%203.84613%2013.0039%204.61537V5.53844H7.58013V4.61537C7.58013%203.84613%207.84378%203.19229%208.37109%202.65383C8.89839%202.11537%209.5387%201.84613%2010.292%201.84613ZM3.00386%207.3846H5.77222V10.1538H7.58013V7.3846H13.0039V10.1538H14.8118V7.3846H17.5801L18.3711%2022.1538H2.2129L3.00386%207.3846Z'%20fill='white'/%3e%3c/svg%3e";
 const ShoppingBag = ({ handleShowModal }) => {
   const { data } = reactExports.useContext(APIContext);
   const cartData = Object.values(data["cartItem"] ?? {});
   const count = cartData.length;
   return /* @__PURE__ */ jsxs(StyledShoppingBagButton, { onClick: handleShowModal, "aria-label": "장바구니", children: [
-    /* @__PURE__ */ jsx$1(StyledShoppingBagIcon, { src: "./ShoppingBag.svg", alt: "Shopping Bag" }),
+    /* @__PURE__ */ jsx$1(StyledShoppingBagIcon, { src: ShoppingBagSvg, alt: "Shopping Bag" }),
     count > 0 && /* @__PURE__ */ jsx$1(StyledShoppingBagCount, { children: count })
   ] });
 };
@@ -15436,7 +15442,7 @@ const App = () => {
   return /* @__PURE__ */ jsx$1(ToastProvider, { children: /* @__PURE__ */ jsx$1(APIProvider, { children: /* @__PURE__ */ jsx$1(ProductListPage, {}) }) });
 };
 async function enableMocking() {
-  const { worker } = await __vitePreload(() => import("./browser-BMOEU8Be.js"), true ? [] : void 0);
+  const { worker } = await __vitePreload(() => import("./browser-BNQskg3s.js"), true ? [] : void 0);
   await worker.start({
     serviceWorker: {
       url: "/react-shopping-products/mockServiceWorker.js"
