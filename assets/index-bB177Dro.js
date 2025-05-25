@@ -14884,13 +14884,7 @@ const useShopping = () => {
   const product = Object.values(data["product"] ?? {});
   const cartData = Object.values(data["cartItem"] ?? {});
   const { addToCart, increaseQuantity, decreaseQuantity, deleteFromCart } = useCart();
-  const {
-    isLoading: isProductLoading,
-    categorySelect,
-    priceSelect,
-    handleCategorySelect,
-    handlePriceSelect
-  } = useProductList();
+  const { isLoading, categorySelect, priceSelect, handleCategorySelect, handlePriceSelect } = useProductList();
   const filteredData = reactExports.useMemo(() => {
     return product.map((item) => {
       const isInCart = cartData.map((item2) => item2.product).some((cartItem) => cartItem.id === item.id);
@@ -14927,7 +14921,7 @@ const useShopping = () => {
   return {
     cartData,
     filteredData,
-    isLoading: isProductLoading,
+    isLoading,
     addCartItem: addCartItem2,
     updateCartQuantity,
     deleteFromCart,
@@ -15442,7 +15436,7 @@ const App = () => {
   return /* @__PURE__ */ jsx$1(ToastProvider, { children: /* @__PURE__ */ jsx$1(APIProvider, { children: /* @__PURE__ */ jsx$1(ProductListPage, {}) }) });
 };
 async function enableMocking() {
-  const { worker } = await __vitePreload(() => import("./browser-BNQskg3s.js"), true ? [] : void 0);
+  const { worker } = await __vitePreload(() => import("./browser-Cm778lP1.js"), true ? [] : void 0);
   await worker.start({
     serviceWorker: {
       url: "/react-shopping-products/mockServiceWorker.js"
