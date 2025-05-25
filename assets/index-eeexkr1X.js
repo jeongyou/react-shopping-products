@@ -15436,8 +15436,12 @@ const App = () => {
   return /* @__PURE__ */ jsx$1(ToastProvider, { children: /* @__PURE__ */ jsx$1(APIProvider, { children: /* @__PURE__ */ jsx$1(ProductListPage, {}) }) });
 };
 async function enableMocking() {
-  const { worker } = await __vitePreload(() => import("./browser-Dz1hvsZE.js"), true ? [] : void 0);
-  return worker.start();
+  const { worker } = await __vitePreload(() => import("./browser-BMOEU8Be.js"), true ? [] : void 0);
+  await worker.start({
+    serviceWorker: {
+      url: "/react-shopping-products/mockServiceWorker.js"
+    }
+  });
 }
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById("root")).render(
