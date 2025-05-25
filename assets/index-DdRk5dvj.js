@@ -15436,7 +15436,7 @@ const App = () => {
   return /* @__PURE__ */ jsx$1(ToastProvider, { children: /* @__PURE__ */ jsx$1(APIProvider, { children: /* @__PURE__ */ jsx$1(ProductListPage, {}) }) });
 };
 async function enableMocking() {
-  const { worker } = await __vitePreload(() => import("./browser-DV08mhuK.js"), true ? [] : void 0);
+  const { worker } = await __vitePreload(() => import("./browser-Dz1hvsZE.js"), true ? [] : void 0);
   return worker.start();
 }
 enableMocking().then(() => {

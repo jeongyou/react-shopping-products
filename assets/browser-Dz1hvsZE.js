@@ -27,7 +27,7 @@ var __privateMethod = (obj, member, method) => {
   return method;
 };
 var _executor, _decorate, decorate_fn, _a2, _executor2, _decorate2, decorate_fn2, _b2, _c2;
-import { E as ENV } from "./index-BQlClzRd.js";
+import { E as ENV } from "./index-DdRk5dvj.js";
 var POSITIONALS_EXP$1 = /(%?)(%([sdijo]))/g;
 function serializePositional$1(positional, flag) {
   switch (flag) {
@@ -19107,6 +19107,11 @@ const handlers = [
   })
 ];
 const worker = setupWorker(...handlers);
+worker.start({
+  serviceWorker: {
+    url: "/react-shopping-products/mockServiceWorker.js"
+  }
+});
 export {
   worker
 };
