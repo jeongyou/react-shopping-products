@@ -14148,7 +14148,7 @@ const StyledOption = newStyled.div`
     background-color: rgba(205, 205, 205, 0.63);
   }
 `;
-const arrow = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGkSURBVHgB7djdacMwFIbh45LcZ48QSEfoBhkh3SCbdIQmE3SEdATfJNcdIfcGu/qoCiY4zrEt6cjwPWBsg3/Ei60LiRAREREREREREREREc1Bob1ws9nsmqbZLhaLY1mWPzIzY8evCrRerz/c7uBPb257u1wupcyEG/+n2+396W25XL5qI72IzqF1vHLb2b10KzNwFwdWVVXttPerAhVFcf+1zCJSR5x/N1FSBXL/7nvHQ7OO1BPn5KaHoyipJ2kf4ix/Ydqym5OexNnLAOpA/sXZRwoZBwYF8gPINlLoODA4kB9IdpFixIFRgUTyihQrDowOBDlEihkHJgUCy0ix48DkQGARKUUcCBIIUkZKFQeCBYIUkVLGgaCBIGak1HEgeCCIEckiDkQJBCEjWcWBaIEgRCTLOBA1EEyJZB0HogeCMZFyiANJAsGQSLnEgWSBQBMppziQNBD0RXJr399ueXfXcZtJHEgeCHoidTGLAyaBQBnJNA6YBYInkczjgGkgeBApizhgHgh8pC83Sa/quj5dr9eDEBERERERERERERERtf0Cr1QewsBPeIMAAAAASUVORK5CYII=";
+const arrowImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGkSURBVHgB7djdacMwFIbh45LcZ48QSEfoBhkh3SCbdIQmE3SEdATfJNcdIfcGu/qoCiY4zrEt6cjwPWBsg3/Ei60LiRAREREREREREREREc1Bob1ws9nsmqbZLhaLY1mWPzIzY8evCrRerz/c7uBPb257u1wupcyEG/+n2+396W25XL5qI72IzqF1vHLb2b10KzNwFwdWVVXttPerAhVFcf+1zCJSR5x/N1FSBXL/7nvHQ7OO1BPn5KaHoyipJ2kf4ix/Ydqym5OexNnLAOpA/sXZRwoZBwYF8gPINlLoODA4kB9IdpFixIFRgUTyihQrDowOBDlEihkHJgUCy0ix48DkQGARKUUcCBIIUkZKFQeCBYIUkVLGgaCBIGak1HEgeCCIEckiDkQJBCEjWcWBaIEgRCTLOBA1EEyJZB0HogeCMZFyiANJAsGQSLnEgWSBQBMppziQNBD0RXJr399ueXfXcZtJHEgeCHoidTGLAyaBQBnJNA6YBYInkczjgGkgeBApizhgHgh8pC83Sa/quj5dr9eDEBERERERERERERERtf0Cr1QewsBPeIMAAAAASUVORK5CYII=";
 const Select = ({ selectedOptions, maxWidth = "200px", children, ...props }) => {
   const [isOpen, setIsOpen] = reactExports.useState(false);
   return /* @__PURE__ */ jsxs(StyledSelectContainer, { maxWidth, onClick: () => setIsOpen(!isOpen), ...props, children: [
@@ -14158,8 +14158,8 @@ const Select = ({ selectedOptions, maxWidth = "200px", children, ...props }) => 
         StyledSelectIcon,
         {
           isOpen,
-          src: arrow,
-          alt: "arrow",
+          src: arrowImg,
+          alt: "arrow icon",
           css: css`
             padding: 2px 0 0 0;
           `
@@ -14225,37 +14225,29 @@ const IconButton = ({ variant = "primary", src, children, ...props }) => {
 };
 const minus = "data:image/svg+xml,%3csvg%20width='15'%20height='3'%20viewBox='0%200%2015%203'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.5%201.5C6.18629%201.5%208.81371%201.5%2013.5%201.5'%20stroke='%23363636'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
 const plus = "data:image/svg+xml,%3csvg%20width='15'%20height='15'%20viewBox='0%200%2015%2015'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.5%207.5H13.5M7.5%2013.5V1.5'%20stroke='%23363636'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
-const ItemCounter = ({
-  initial = 1,
+const ProductQuantityCounter = ({
+  initialQuantity = 1,
   isInCart,
   onAddToCart,
   onIncreaseQuantity,
   onDecreaseQuantity,
   onRemoveFromCart
 }) => {
-  const [count, setCount] = reactExports.useState(initial);
+  const [count, setCount] = reactExports.useState(initialQuantity);
   const [hasBeenAdded, setHasBeenAdded] = reactExports.useState(isInCart);
   reactExports.useEffect(() => {
-    setCount(initial);
+    setCount(initialQuantity);
     setHasBeenAdded(isInCart);
-  }, [initial, isInCart]);
+  }, [initialQuantity, isInCart]);
   const handleIncrement = async () => {
     if (!hasBeenAdded && count === 0) {
-      try {
-        await onAddToCart();
-        setCount(1);
-        setHasBeenAdded(true);
-      } catch (error) {
-        console.warn("장바구니 담기 실패:", error);
-      }
+      await onAddToCart();
+      setCount(1);
+      setHasBeenAdded(true);
     } else {
       const newCount = count + 1;
-      try {
-        await onIncreaseQuantity();
-        setCount(newCount);
-      } catch (error) {
-        console.warn("수량 증가 실패:", error);
-      }
+      await onIncreaseQuantity();
+      setCount(newCount);
     }
   };
   const handleDecrement = () => {
@@ -14366,9 +14358,9 @@ const ProductItem = ({
               width: "100%",
               gap: "",
               children: isChecked ? /* @__PURE__ */ jsx$1(
-                ItemCounter,
+                ProductQuantityCounter,
                 {
-                  initial: cartCount,
+                  initialQuantity: cartCount,
                   isInCart: isChecked,
                   onAddToCart: onAddCart,
                   onIncreaseQuantity: onIncrease,
@@ -14733,13 +14725,19 @@ const useApiRequest = () => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const { showToast } = reactExports.useContext(ToastContext);
   const handleRequest = reactExports.useCallback(
-    async (apiCall, onSuccess, errorData, options, onError) => {
+    async ({
+      request: request2,
+      onSuccess,
+      onError,
+      errorData,
+      options
+    }) => {
       try {
         setIsLoading(true);
         if (options && options.delay) {
           await new Promise((resolve) => setTimeout(resolve, options.delay));
         }
-        const data = await apiCall();
+        const data = await request2();
         return onSuccess ? onSuccess(data) : data;
       } catch (err) {
         const error = err instanceof Error ? err : new Error(String(err));
@@ -14763,48 +14761,37 @@ const useCartRequest = () => {
   });
   const addToCart = reactExports.useCallback(
     async (productId, quantity = 1) => {
-      return handleRequest(
-        () => addCartItem({
-          productId,
-          quantity
-        }),
-        async () => {
-          await refetch();
-        }
-      );
+      return handleRequest({
+        request: () => addCartItem({ productId, quantity }),
+        onSuccess: async () => await refetch()
+      });
     },
     [handleRequest, refetch]
   );
   const increaseQuantity = reactExports.useCallback(
     async (cartItemId, currentQuantity) => {
-      return handleRequest(
-        () => setCartQuantity({ cartItemId, quantity: currentQuantity + 1 }),
-        async () => {
-          await refetch();
-        }
-      );
+      return handleRequest({
+        request: () => setCartQuantity({ cartItemId, quantity: currentQuantity + 1 }),
+        onSuccess: async () => await refetch()
+      });
     },
     [handleRequest, refetch]
   );
   const decreaseQuantity = reactExports.useCallback(
     async (cartItemId, currentQuantity) => {
-      return handleRequest(
-        () => setCartQuantity({ cartItemId, quantity: currentQuantity - 1 }),
-        async () => {
-          await refetch();
-        }
-      );
+      return handleRequest({
+        request: () => setCartQuantity({ cartItemId, quantity: currentQuantity - 1 }),
+        onSuccess: async () => await refetch()
+      });
     },
     [handleRequest, refetch]
   );
   const deleteFromCart = reactExports.useCallback(
     async (cartItemId) => {
-      return handleRequest(
-        () => deleteCartItem(cartItemId),
-        async () => {
-          await refetch();
-        }
-      );
+      return handleRequest({
+        request: () => deleteCartItem(cartItemId),
+        onSuccess: async () => await refetch()
+      });
     },
     [handleRequest, refetch]
   );
@@ -14978,16 +14965,17 @@ const useFocusTrap = (containerRef, active) => {
     };
   }, [active]);
 };
-const useKeyEscClose = (onHide) => {
+const useKeyPress = (key, handler, options = {}) => {
+  const { eventType = "keydown" } = options;
   reactExports.useEffect(() => {
-    const escKeyModalClose = (e2) => {
-      if (e2.key === "Escape") {
-        onHide();
+    const keyListener = (e2) => {
+      if (e2.key === key) {
+        handler(e2);
       }
     };
-    window.addEventListener("keydown", escKeyModalClose);
-    return () => window.removeEventListener("keydown", escKeyModalClose);
-  }, [onHide]);
+    window.addEventListener(eventType, keyListener);
+    return () => window.removeEventListener(eventType, keyListener);
+  }, [key, handler, eventType]);
 };
 const SIZE_MAP = {
   small: 320,
@@ -15164,20 +15152,39 @@ const CancelButton = ({
   width = "",
   ...rest
 }) => /* @__PURE__ */ jsx$1(BaseButton, { css: CancelButtonStyle(variation, width), "aria-label": "취소", ...rest, children });
-const ConfirmButton = ({ children = "확인", onConfirm, onHide, disabled, ...rest }) => {
+const ConfirmButton = ({
+  children = "확인",
+  onConfirm,
+  onHide,
+  disabled,
+  ...rest
+}) => {
   const handleClick = () => {
     if (disabled)
       return;
     onConfirm == null ? void 0 : onConfirm();
     onHide();
   };
-  return /* @__PURE__ */ jsx$1(BaseButton, { css: ConfirmButtonStyle(disabled), onClick: handleClick, disabled, "aria-label": "확인", ...rest, children });
+  return /* @__PURE__ */ jsx$1(
+    BaseButton,
+    {
+      css: ConfirmButtonStyle(disabled),
+      onClick: handleClick,
+      disabled,
+      "aria-label": "확인",
+      ...rest,
+      children
+    }
+  );
 };
-const ModalContext = reactExports.createContext({
-  onHide: () => {
-    throw new Error("ModalContext must be used within a ModalProvider");
+const ModalContext = reactExports.createContext(void 0);
+const useModalContext = () => {
+  const context = reactExports.useContext(ModalContext);
+  if (!context) {
+    throw new Error("useModalContext must be used within a ModalProvider");
   }
-});
+  return context;
+};
 const Modal = ({
   show,
   onHide,
@@ -15188,7 +15195,7 @@ const Modal = ({
 }) => {
   const containerRef = reactExports.useRef(null);
   useFocusTrap(containerRef, show);
-  useKeyEscClose(onHide);
+  useKeyPress("Escape", onHide, { eventType: "keydown" });
   return /* @__PURE__ */ jsx$1(ModalContext.Provider, { value: { onHide }, children: /* @__PURE__ */ jsxs("div", { css: ModalWrapperStyle(show), children: [
     /* @__PURE__ */ jsx$1("div", { css: backGroundStyle(showBackdrop), onClick: onHide }),
     /* @__PURE__ */ jsx$1(
@@ -15205,7 +15212,7 @@ const Modal = ({
   ] }) });
 };
 const ModalHeader = ({ closeButton = false, children }) => {
-  const { onHide } = reactExports.useContext(ModalContext);
+  const { onHide } = useModalContext();
   return /* @__PURE__ */ jsxs("div", { css: ModalHeaderStyle, children: [
     /* @__PURE__ */ jsx$1("span", { children }),
     closeButton && /* @__PURE__ */ jsx$1("button", { css: ModalCloseStyle, onClick: onHide, "aria-label": "닫기", children: /* @__PURE__ */ jsx$1(
@@ -15436,7 +15443,7 @@ const App = () => {
   return /* @__PURE__ */ jsx$1(ToastProvider, { children: /* @__PURE__ */ jsx$1(APIProvider, { children: /* @__PURE__ */ jsx$1(ProductListPage, {}) }) });
 };
 async function enableMocking() {
-  const { worker } = await __vitePreload(() => import("./browser-Cm778lP1.js"), true ? [] : void 0);
+  const { worker } = await __vitePreload(() => import("./browser-ESd2E7Wu.js"), true ? [] : void 0);
   await worker.start({
     serviceWorker: {
       url: "/react-shopping-products/mockServiceWorker.js"

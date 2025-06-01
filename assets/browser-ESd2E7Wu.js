@@ -27,7 +27,7 @@ var __privateMethod = (obj, member, method) => {
   return method;
 };
 var _executor, _decorate, decorate_fn, _a2, _executor2, _decorate2, decorate_fn2, _b2, _c2;
-import { E as ENV } from "./index-bB177Dro.js";
+import { E as ENV } from "./index-DtKwzBnX.js";
 var POSITIONALS_EXP$1 = /(%?)(%([sdijo]))/g;
 function serializePositional$1(positional, flag) {
   switch (flag) {
@@ -18928,7 +18928,7 @@ const content = [
   },
   {
     id: 1005,
-    quantity: 1,
+    quantity: 2,
     product: {
       id: 5,
       name: "동물 양말",
@@ -18939,7 +18939,7 @@ const content = [
   },
   {
     id: 1006,
-    quantity: 1,
+    quantity: 2,
     product: {
       id: 6,
       name: "플라망고",
