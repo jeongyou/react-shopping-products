@@ -92,7 +92,7 @@ export const ProductItem = ({
         >
           {isChecked ? (
             <ProductQuantityCounter
-              initialQuantity={cartCount}
+              cartQuantity={cartCount}
               isInCart={isChecked}
               onAddToCart={onAddCart}
               onIncreaseQuantity={onIncrease}
