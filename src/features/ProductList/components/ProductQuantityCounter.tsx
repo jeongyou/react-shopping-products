@@ -1,5 +1,5 @@
 import { IconButton } from '@/shared/components/IconButton';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import minus from '../../../../public/minus.svg';
 import plus from '../../../../public/plus.svg';
 
@@ -20,36 +20,23 @@ const ProductQuantityCounter = ({
   onDecreaseQuantity,
   onRemoveFromCart,
 }: ProductQuantityCounterProps) => {
-  // const [count, setCount] = useState(initialQuantity);
   const [hasBeenAdded, setHasBeenAdded] = useState(isInCart);
-
-  // useEffect(() => {
-  //   setCount(initialQuantity);
-  //   setHasBeenAdded(isInCart);
-  // }, [initialQuantity, isInCart]);
 
   const handleIncrement = async () => {
     if (!hasBeenAdded && cartQuantity === 0) {
       await onAddToCart();
-      // setCount(1);
       setHasBeenAdded(true);
     } else {
-      // const newCount = initialQuantity + 1;
       await onIncreaseQuantity();
-      // setCount(newCount);
     }
   };
 
   const handleDecrement = () => {
-    // const newCount = cartQuantity - 1;
-
     if (cartQuantity < 1) {
-      // setCount(0);
       onRemoveFromCart();
       return;
     }
 
-    // setCount(newCount);
     onDecreaseQuantity();
   };
 
