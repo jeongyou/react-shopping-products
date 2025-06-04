@@ -1,6 +1,5 @@
 import { useAPI } from '@/shared/context/APIContext';
-import { Product, ProductQuery } from '../types/Product';
-import { useMemo } from 'react';
+import { ProductQuery } from '../types/Product';
 import { getCartItemList } from '@/api/cart';
 import { CartItem } from '../types/Cart';
 

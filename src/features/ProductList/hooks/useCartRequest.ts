@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { addCartItem, deleteCartItem,, setCartQuantity } from '@/api/cart';
+import { addCartItem, deleteCartItem, setCartQuantity } from '@/api/cart';
 import { useApiRequest } from '@/shared/hooks/useApiRequest';
 
 import { useGetCartList } from './useGetCartList';
