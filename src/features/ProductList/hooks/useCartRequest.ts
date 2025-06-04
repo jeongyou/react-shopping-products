@@ -1,20 +1,13 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 
-import { addCartItem, deleteCartItem, getCartItemList, setCartQuantity } from '@/api/cart';
+import { addCartItem, deleteCartItem,, setCartQuantity } from '@/api/cart';
 import { useApiRequest } from '@/shared/hooks/useApiRequest';
 
-import { CartItem } from '../types/Cart';
-import { useAPI } from '@/shared/context/APIContext';
+import { useGetCartList } from './useGetCartList';
 
 export const useCartRequest = () => {
   const { handleRequest } = useApiRequest();
-
-  const fetcher = useMemo(() => () => getCartItemList({ page: 0, size: 50 }), []);
-
-  const { refetch, isLoading } = useAPI<CartItem[]>({
-    name: 'cartItem',
-    fetcher,
-  });
+  const { refetch, isLoading } = useGetCartList({ page: 0, size: 50 });
 
   const addToCart = useCallback(
     async (productId: number, quantity: number = 1) => {
