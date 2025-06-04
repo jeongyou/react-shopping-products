@@ -1,25 +1,21 @@
 import { useMemo } from 'react';
+import { useGetProductList } from './useGetProductList';
 
-import { getProductList } from '@/api/product';
+type ProductFilterParams = {
+  sort: string;
+  filter: string;
+};
 
-import { Product } from '../types/Product';
-import { useAPI } from '@/shared/context/APIContext';
-
-export const useProductListRequest = (priceSelect: string, categorySelect: string) => {
+export const useProductListRequest = ({ sort = '전체', filter = '전체' }: ProductFilterParams) => {
   const query = useMemo(
     () => ({
       page: 0,
       size: 20,
-      sort: priceSelect !== '전체' && priceSelect ? `price,${priceSelect}` : '',
-      category: categorySelect === '전체' ? '' : categorySelect,
+      sort: sort !== '전체' && sort ? `price,${sort}` : '',
+      category: filter === '전체' ? '' : filter,
     }),
-    [priceSelect, categorySelect]
+    [sort, filter]
   );
 
-  const { refetch, isLoading } = useAPI<Product[]>({
-    name: 'product',
-    fetcher: () => getProductList(query),
-  });
-
-  return { refetch, isLoading };
+  return useGetProductList(query);
 };

@@ -6,7 +6,10 @@ export const useProductList = () => {
   const [categorySelect, setCategorySelect] = useState('전체');
   const [priceSelect, setPriceSelect] = useState('전체');
 
-  const { refetch, isLoading } = useProductListRequest(priceSelect, categorySelect);
+  const { refetch, isLoading } = useProductListRequest({
+    sort: priceSelect,
+    filter: categorySelect,
+  });
 
   const handleCategorySelect = (category: string) => {
     setCategorySelect(category);
@@ -22,7 +25,6 @@ export const useProductList = () => {
 
   return {
     isLoading,
-    // product,
     categorySelect,
     priceSelect,
     handleCategorySelect,
